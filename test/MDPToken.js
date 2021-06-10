@@ -32,9 +32,9 @@ contract('MDPToken', function(accounts) {
 		return MDPToken.deployed().then(function(instance) {
 			tokenInstance = instance;
 			// test require statement by first transferring something larger than the senders balance
-//			return tokenInstance.transfer.call(accounts[1], 9999999999999999999999, { from: accounts[0]});
-//		}).then(assert.fail).catch(function(error) {
-//			assert(error.message.indexOf('revert') >= 0, "error Message must contain revert");
+	    	return tokenInstance.transfer.call(accounts[1], 9999999);
+	    }).then(assert.fail).catch(function(error) {
+	    	assert(error.message.indexOf('revert') >= 0, 'error message must contain revert');
 			return tokenInstance.transfer.call(accounts[1], 250000, { from: accounts[0]});
 		}).then(function(success) {
 			assert.equal(success,true, 'it returns true');
