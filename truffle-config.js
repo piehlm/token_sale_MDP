@@ -23,6 +23,11 @@
 //
 // const fs = require('fs');
 // const mnemonic = fs.readFileSync(".secret").toString().trim();
+const HDWalletProvider = require("@truffle/hdwallet-provider");
+//var mnemonic = process.env["MNEMONIC"];
+var mnemonic = "make village injury town ability oven crisp crucial draw circle apology half";
+//var tokenKey = process.env["INFURA"];
+var tokenKey = "9da247dd83c8467684420bdbf967803f";
 
 module.exports = {
   /**
@@ -40,6 +45,14 @@ module.exports = {
       host: "127.0.0.1",
       port: 7545,
       network_id: "*" // Match any network id
+    },
+    rinkeby: {
+      host: "127.0.0.1",
+      provider: function () {
+        return new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/" + tokenKey)
+      },
+      gas: 10000000,
+      network_id: 4
     },
     develop: {
       port: 8545
